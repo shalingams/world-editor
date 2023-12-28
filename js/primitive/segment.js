@@ -5,19 +5,21 @@ class Segment {
   }
 
   equals(segment) {
-    return this.includes(segment.p1) && this.includes(segment.p2); 
+    return this.includes(segment.p1) && this.includes(segment.p2);
   }
 
   includes(point) {
-    return this.p1.equals(point) || this.p2.equals(point); 
+    return this.p1.equals(point) || this.p2.equals(point);
   }
 
-  draw(ctx, width = 2, color = "black") {
+  draw(ctx, { width = 2, color = "black", dash = [] } = {}) {
     ctx.beginPath();
     ctx.lineWith = width;
     ctx.strokeStyle = color;
+    ctx.setLineDash(dash);
     ctx.moveTo(this.p1.x, this.p1.y);
     ctx.lineTo(this.p2.x, this.p2.y);
     ctx.stroke();
+    ctx.setLineDash([]);
   }
 }
